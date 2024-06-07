@@ -1,0 +1,212 @@
+*
+::after
+::before {
+    box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "aeconic";
+  src: url(..\tetris\font\aeconic.woff)format("woff"),url(..\tetris\font\aeconic.woff2)format("woff2");
+  
+}
+  a {
+  color:#8795a8d7;
+  text-decoration: none;
+}
+.container{
+  font-family:"aeconic";
+  color:white;
+  -webkit-text-stroke: 1px #060101;
+  font-size: 30px;
+  
+  height: 100%;
+  max-width: 1120px;
+  width: 100%;
+  margin:0 auto;
+  background-image: url("../tetris/img/4be5a116318525-599c589608005.jpg");
+}
+.container__gradient{
+  background-color:rgba(231, 246, 203,0.9) ;
+  height: 95vh;
+}
+.conteiner__section{
+  
+  display:flex;
+  justify-content: space-around;
+  padding-top: 20px;
+  height: 86vh;
+}
+.section__game{
+  position: relative;
+  background-color: #c1cee0d7;
+  width:570px;
+  border: 8px solid #8795a8d7;
+}
+.section__tools{
+  width:40%;
+  
+}
+.tools__element{
+  background-color: #e3edf6;
+  height: 21vh;
+  border: 8px solid #8795a8d7;
+}
+/* таблица */
+
+.container__tools{
+
+}
+.tools__table{
+  width:100%;
+  /* margin-top: 34px; */
+  border-spacing: 9px;
+}
+
+
+.table__row{
+  font-size: 2em;
+  font-weight: bold;
+  /* width: 100%; */
+  text-align: justify;
+
+}
+.table__row__level-number,
+.table__row__lines-number,
+.table__row__score-number{
+  color:#060101;
+  text-align: end;
+  font-weight: 100;
+}
+
+
+
+.table__row__button{
+  display:flex;
+  color:#73787ed7;
+  list-style-type: square;
+  
+  font-size: 2em; 
+  margin: 26px 0px 26px 0px;
+  justify-content: space-between;
+}
+
+
+
+.tools__element-header{
+  margin :0 auto;
+  font-size: 6em;
+  -webkit-text-stroke: 1px #8795a8d7;
+  
+  
+}
+.cube{
+  width:30px;
+  height: 30px;
+  /* border:2px solid black; */
+  background-color: red;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2) inset;
+  display: inline-block;
+}
+.line{
+  height: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.empty{
+  width:30px;
+  height: 30px;
+  display: inline-block;
+}
+
+.figure {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 50px);
+}
+
+@media screen and (max-width:1134px){
+  .container{
+    width:800px;
+  }
+  .tools__element-header{
+    font-size: 4em;
+   
+  }
+  .table__row,
+  .table__row__button{
+    font-size: 40px;
+  }
+}
+@media screen and (max-width:796px){
+  .container{
+    width:400px;
+    height: 100%;
+  }
+  .conteiner__section{
+    display: block;
+  }
+  .section__game{
+    width: 90%;
+    height: 60%;
+    margin: 0 auto;
+    margin-bottom: 1em;
+  }
+  .section__tools{
+    width: 93%;
+    height: 40%;
+    margin: 0 auto;
+  }
+  .tools__element{
+    height: 13vh;
+    width: 100%;
+  }
+  .container__tools{
+    display: flex;
+  }
+  .table__row{
+    font-size: 30px;
+  }
+  .table__row__button{
+    justify-content: space-around;
+    margin: 14px 0px -17px 0px;
+  }
+  .tools__element-header{
+    font-size: 5em;
+  }
+}
+@media screen and (max-width:410px){
+  .container{
+    width:100%;
+    height: 100%;
+  }
+  .tools__element-header{
+    font-size: 3em;
+    letter-spacing: 9px;
+  }
+  
+}
+@media screen and (max-width:305px){
+  .container{
+    width:200px;
+    max-width: 100%;
+  }
+  .container__tools{
+    display: flex;
+  }
+  .tools__element{
+    width: 93%;
+    height: 8vh;
+  }
+  .table__row{
+    font-size: 20px;
+  }
+  .table__row__button{
+    font-size: 30px;
+    justify-content: space-between;
+  }
+  .tools__element-header{
+    font-size: 2em;
+    letter-spacing: 7px;
+  }
+}
