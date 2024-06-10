@@ -1,8 +1,11 @@
 import { corner, line, square, t, z } from './figures/figures';
+import { boost } from './functions/boost';
 import { create } from './functions/create'
 import { move } from './functions/move';
 import { rightLeft } from './functions/right-left';
 import './style.css'
+
+
 
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
@@ -47,10 +50,25 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <!-- <div id="app"></div> -->
     </main>
 `
+let figure: HTMLDivElement = document.querySelector(".figure");
 const shapes: Array<any> = [corner, line, square, t, z ];
-
 const index: number = +(Math.random() * 5).toFixed(0);
+let boostId: number;
 
 create(shapes[index]);
-move(document.querySelector(".figure"));
-rightLeft(document.querySelector(".figure"));
+let moveId = move(figure);
+rightLeft(figure);
+
+addEventListener("keydown", (event: KeyboardEvent) => {
+  if(event.code === "ArrowDown" && !boostId) {
+    boostId = boost(figure, moveId);
+  }
+});
+
+addEventListener("keyup", (event: KeyboardEvent) => {
+  if(event.code === "ArrowDown") {
+    clearInterval(boostId);
+    boostId = null;
+    moveId = move(figure);
+  }
+});
