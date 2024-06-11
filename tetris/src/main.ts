@@ -72,3 +72,19 @@ addEventListener("keyup", (event: KeyboardEvent) => {
     moveId = move(figure);
   }
 });
+
+// const pointer = document.createElement("span");
+// pointer.style.position ="absolute";
+// let pp = 0;
+
+// addEventListener("click", (e) => {
+//   pointer.style.display = "inline";
+//   pointer.innerText = `${pp++}`;
+//   pointer.style.left = `${e.x - 10}px`;
+//   pointer.style.top = `${e.y - 10}px`;
+//   pointer.style.cursor = "pointer";
+//   document.body.appendChild(pointer);
+//   setTimeout(() => {
+//     pointer.style.display = "none";
+//   },300)
+// })
