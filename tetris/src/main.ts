@@ -1,8 +1,7 @@
-import { corner, line, square, t, z } from './figures/figures';
-import { boost } from './functions/boost';
-import { create } from './functions/create'
-import { move } from './functions/move';
-import { rightLeft } from './functions/right-left';
+import { area, corner, line, square, t, z } from './figures/figures';
+import { createFigure } from './functions/createFigure';
+import { createTable } from './functions/createTable';
+import { moveFigure } from './functions/move';
 import './style.css'
 
 
@@ -13,9 +12,9 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <div class="container__gradient">
         <div class ="conteiner__section">  
           <section class ="section__game">
-            <div class="figure">
-              
-            </div>
+            <table class="section__table">
+
+            </table>
           </section>    <!--игра-->
           <section class="section__tools">
             <div class = "container__tools">
@@ -50,28 +49,19 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <!-- <div id="app"></div> -->
     </main>
 `
-let figure: HTMLDivElement = document.querySelector(".figure");
+// let figure: HTMLDivElement = document.querySelector(".figure");
 const shapes: Array<any> = [corner, line, square, t, z ];
 const index: number = +(Math.random() * 5).toFixed(0);
-let boostId: number;
 
-create(shapes[index]);
-let moveId = move(figure);
-rightLeft(figure);
+// let boostId: number;
 
-addEventListener("keydown", (event: KeyboardEvent) => {
-  if(event.code === "ArrowDown" && !boostId) {
-    boostId = boost(figure, moveId);
-  }
-});
 
-addEventListener("keyup", (event: KeyboardEvent) => {
-  if(event.code === "ArrowDown") {
-    clearInterval(boostId);
-    boostId = null;
-    moveId = move(figure);
-  }
-});
+createTable();
+
+createFigure(shapes[index]);
+
+moveFigure();
+
 
 // const pointer = document.createElement("span");
 // pointer.style.position ="absolute";

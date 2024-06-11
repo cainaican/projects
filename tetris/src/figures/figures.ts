@@ -1,20 +1,25 @@
 let square = [
-    [true,true],
-    [true,true]
+    [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}],
+    [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}]
 ];
 let line = [
-    [true,true,true,true]
+    [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}]
 ];
 let corner = [
-    [true,true,true],
-    [true,false,false]
+    [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}],
+    [{block: "active", cube: 1, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""}]
 ];
 let z = [
-    [false,true,true],
-    [true,true,false]
+    [{block: "active", cube: 0, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}],
+    [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 0, color: ""}]
 ];
 let t = [
-    [true,true,true],
-    [false,true,false]
+    [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}],
+    [{block: "active", cube: 0, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 0, color: ""}]
 ];
-export {square,line,z,t,corner};
+
+let area = new Array(42).fill(0).map((el) => {
+    return new Array(21).fill(0);
+})
+
+export {square,line,z,t,corner, area};
