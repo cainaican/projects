@@ -19,19 +19,3 @@ export function createTable() {
 		table.appendChild(tr)
 	})
 }
-
-export function calculateTable(trs:NodeListOf<HTMLTableRowElement>) {
-	area.forEach((el, idx) => {
-		el.forEach((elInner, idxInner) => {
-			const tds = trs[idx].querySelectorAll("td");
-			if (typeof elInner === "object" && elInner.cube === 1) {
-				tds[idxInner].classList.remove("empty");
-				tds[idxInner].classList.add("cube");
-				return;
-			}
-			tds[idxInner].classList.remove("cube");
-			tds[idxInner].classList.add("empty");
-			return;
-		})
-	})
-}

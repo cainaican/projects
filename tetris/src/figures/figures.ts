@@ -3,23 +3,44 @@ let square = [
     [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}]
 ];
 let line = [
-    [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}]
+    [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}],
+    [{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""}],
+    [{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""}],
+    [{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""}],
 ];
-let corner = [
+let cornerLeft = [
     [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}],
-    [{block: "active", cube: 1, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""}]
+    [{block: "active", cube: 1, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""}],
+    [{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""}]
 ];
-let z = [
+let cornerRight = [
+    [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}],
+    [{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 1, color: ""}],
+    [{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""}]
+];
+let zLeft = [
     [{block: "active", cube: 0, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}],
-    [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 0, color: ""}]
+    [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 0, color: ""}],
+    [{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""}]
+];
+let zRight = [
+    [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 0, color: ""}],
+    [{block: "active", cube: 0, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}],
+    [{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""}]
 ];
 let t = [
     [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}],
-    [{block: "active", cube: 0, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 0, color: ""}]
+    [{block: "active", cube: 0, color: ""},{block: "active", cube: 1, color: ""},{block: "active", cube: 0, color: ""}],
+    [{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""}]
 ];
 
-let area = new Array(42).fill(0).map((el) => {
+export const area = new Array(42).fill(0).map((el) => {
     return new Array(21).fill(0);
 })
 
-export {square,line,z,t,corner, area};
+export const position = {
+    row: 9,
+    column: 1
+}
+
+export const shapes =[square, line, zLeft, zRight, t, cornerLeft, cornerRight];

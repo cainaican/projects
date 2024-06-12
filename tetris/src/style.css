@@ -9,9 +9,13 @@
   src: url(..\tetris\font\aeconic.woff)format("woff"),url(..\tetris\font\aeconic.woff2)format("woff2");
   
 }
-  a {
+a {
   color:#8795a8d7;
   text-decoration: none;
+}
+td {
+  background-color: #c1cee0d7;
+  border: 1px solid black;
 }
 .container{
   font-family:"aeconic";
@@ -30,17 +34,12 @@
   height: 95vh;
 }
 .conteiner__section{
-  
   display:flex;
   justify-content: space-around;
-  padding-top: 20px;
-  height: 86vh;
+  padding: 20px;
 }
 .section__game{
-  position: relative;
-  background-color: #c1cee0d7;
-  width:570px;
-  /* border: 8px solid #8795a8d7; */
+  padding-right: 20px;
 }
 .section__tools{
   width:40%;
@@ -64,9 +63,10 @@
 
 
 .table__row{
+  display: flex;
+  justify-content: space-between;
   font-size: 2em;
   font-weight: bold;
-  /* width: 100%; */
   text-align: justify;
 
 }

@@ -1,7 +1,6 @@
-import { area, corner, line, square, t, z } from './figures/figures';
-import { createFigure } from './functions/createFigure';
-import { createTable } from './functions/createTable';
-import { moveFigure } from './functions/move';
+import { position, shapes } from './figures/figures';
+import { createTable } from './functions/create-table';
+import { draw } from './functions/draw-figure';
 import './style.css'
 
 
@@ -19,24 +18,24 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           <section class="section__tools">
             <div class = "container__tools">
               <div class="tools__element"></div>   <!--рамка-->
-              <table class="tools__table">
-                <thead class="table__body">
-                  <tr class="table__row">
-                    <th class="table__row__level">level</th>
-                    <th class="table__row__level-number">1</th>
-                  </tr>
-                </thead>
+              <div class="tools__table">
+                <div class="table__body">
+                  <div class="table__row">
+                    <div class="table__row__level">level</div>
+                    <div class="table__row__level-number">1</div>
+                  </div>
+                </div>
                 <tbody class="table__body">
-                  <tr class="table__row">
-                    <td class="table__row__lines">lines</td>
-                    <td class="table__row__lines-number">0</td>
-                  </tr>
-                  <tr class="table__row">
-                    <td class="table__row__score">score</td>
-                    <td class="table__row__score-number">238</td>
+                  <div class="table__row">
+                    <div class="table__row__lines">lines</div>
+                    <div class="table__row__lines-number">0</div>
+                  </div>
+                  <div class="table__row">
+                    <div class="table__row__score">score</div>
+                    <div class="table__row__score-number">238</div>
                   </tr>
                 </tbody>
-              </table> 
+              </div> 
             </div>
               <ul class ="table__row__button">
                 <li><a href="#">quit</a></li>
@@ -49,32 +48,28 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <!-- <div id="app"></div> -->
     </main>
 `
-// let figure: HTMLDivElement = document.querySelector(".figure");
-const shapes: Array<any> = [corner, line, square, t, z ];
-const index: number = +(Math.random() * 5).toFixed(0);
-
-// let boostId: number;
-
+const index: number = Math.floor((Math.random() * shapes.length));
 
 createTable();
 
-createFigure(shapes[index]);
+export const activeShape = shapes[index];
 
-moveFigure();
+draw();
 
+addEventListener("keydown", (e) => {
 
-// const pointer = document.createElement("span");
-// pointer.style.position ="absolute";
-// let pp = 0;
+  if (e.code === "ArrowLeft") {
+    position.row--;
+    draw();
+  }
+  if (e.code === "ArrowRight") {
+    position.row++;
+    draw();
+  }
+  if (e.code === "ArrowDown") {
+    position.column+=2;
+    draw();
+  }
 
-// addEventListener("click", (e) => {
-//   pointer.style.display = "inline";
-//   pointer.innerText = `${pp++}`;
-//   pointer.style.left = `${e.x - 10}px`;
-//   pointer.style.top = `${e.y - 10}px`;
-//   pointer.style.cursor = "pointer";
-//   document.body.appendChild(pointer);
-//   setTimeout(() => {
-//     pointer.style.display = "none";
-//   },300)
-// })
+})
+
