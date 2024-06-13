@@ -1,6 +1,7 @@
 import { position, shapes } from './figures/figures';
 import { createTable } from './functions/create-table';
 import { draw } from './functions/draw-figure';
+import { rotate } from './functions/rotate';
 import './style.css'
 
 
@@ -52,7 +53,7 @@ const index: number = Math.floor((Math.random() * shapes.length));
 
 createTable();
 
-export const activeShape = shapes[index];
+export let activeShape = shapes[index];
 
 draw();
 
@@ -70,6 +71,15 @@ addEventListener("keydown", (e) => {
     position.column+=2;
     draw();
   }
+  if (e.code === "ArrowUp") {
+    activeShape = rotate();
+    draw();
+  }
 
 })
+
+// setInterval(() => {
+//   position.column++;
+//   draw();
+// },800)
 
