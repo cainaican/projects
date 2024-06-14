@@ -1,10 +1,21 @@
 import { position, shapes } from './figures/figures';
+import { checkForStop } from './functions/check-for-stop';
 import { createTable } from './functions/create-table';
 import { draw } from './functions/draw-figure';
 import { rotate } from './functions/rotate';
-import './style.css'
+import './style.css';
 
 
+/**
+ * Процедура отрисовки
+ * 
+ * 1. Проверка есть ли поле после фигурки
+ * 2.1 Если нет, меняем active в фигурке на 'stay'
+ * 2.2 Создаем новую активную фигурку фигурку
+ * 
+ * 
+ * 
+ */
 
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
@@ -49,11 +60,11 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <!-- <div id="app"></div> -->
     </main>
 `
-const index: number = Math.floor((Math.random() * shapes.length));
+const index = () => Math.floor((Math.random() * shapes.length));
 
 createTable();
 
-export let activeShape = shapes[index];
+export let activeShape = shapes[index()];
 
 draw();
 
@@ -78,8 +89,15 @@ addEventListener("keydown", (e) => {
 
 })
 
-// setInterval(() => {
-//   position.column++;
-//   draw();
-// },800)
+setInterval(() => {
+  if (checkForStop()) {
+    activeShape.flat().forEach((el) => el.block = "stay");
+    activeShape = shapes[index()];
+    return;
+  }
+  position.column++;
+  draw();
+}, 800)
+
+
 
