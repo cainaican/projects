@@ -1,7 +1,7 @@
 import { position, shapes } from './figures/figures';
 import { checkForStop } from './functions/check-for-stop';
 import { createTable } from './functions/create-table';
-import { draw } from './functions/draw-figure';
+import { clear, draw } from './functions/draw-figure';
 import { rotate } from './functions/rotate';
 import './style.css';
 
@@ -69,24 +69,20 @@ export let activeShape = shapes[index()];
 draw();
 
 addEventListener("keydown", (e) => {
-
+  clear();
   if (e.code === "ArrowLeft") {
     position.row--;
-    draw();
   }
   if (e.code === "ArrowRight") {
     position.row++;
-    draw();
   }
   if (e.code === "ArrowDown") {
     position.column+=2;
-    draw();
   }
   if (e.code === "ArrowUp") {
     activeShape = rotate();
-    draw();
   }
-
+  draw();
 })
 
 setInterval(() => {
@@ -97,6 +93,7 @@ setInterval(() => {
     position.row = 9;
     return;
   }
+  clear();
   position.column++;
   draw();
 }, 800)
