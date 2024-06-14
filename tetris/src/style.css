@@ -122,20 +122,7 @@ td {
   position: absolute;
   top: 0;
   left: calc(50% - 50px);
-  /* animation: rotating 1000ms infinite; */
 }
-
-/* @keyframes rotating {
-  0% {
-    transform: rotate3d(1, 1, 1, 0deg);
-  }
-  50% {
-    transform: rotate3d(1, 1, 1, 360deg);
-  }
-  100% {
-    transform: rotate3d(1, 1, 1, 720deg);
-  }
-} */
 
 @media screen and (max-width:1134px){
   .container{

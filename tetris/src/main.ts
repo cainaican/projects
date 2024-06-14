@@ -91,8 +91,10 @@ addEventListener("keydown", (e) => {
 
 setInterval(() => {
   if (checkForStop()) {
-    activeShape.flat().forEach((el) => el.block = "stay");
+    activeShape.forEach((el) => el.forEach(elInner => elInner.block = "stay"));
     activeShape = shapes[index()];
+    position.column = 1;
+    position.row = 9;
     return;
   }
   position.column++;
