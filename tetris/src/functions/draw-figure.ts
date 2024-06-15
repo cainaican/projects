@@ -5,8 +5,10 @@ export function draw() {
 
 	const rows: NodeListOf<HTMLTableRowElement> = document.querySelectorAll("tr");
 
-	for(let i = position.column, a = 0; i < position.column + activeShape.length; i++, a++){
-		for(let j = position.row, b = 0; j < position.row + activeShape[0].length; j++, b++){
+	for(let i = position.row, a = 0; i < position.row + activeShape.length; i++, a++){
+		for(let j = position.column, b = 0; j < position.column + activeShape[0].length; j++, b++){
+			if(i + 1 >= 43) continue;
+
 			const cellsInner = rows[i].querySelectorAll("td");
 			if (activeShape[a][b].cube === 1) cellsInner[j].classList.add("cube")
 		}
@@ -18,8 +20,10 @@ export function clear() {
 
 	const rows: NodeListOf<HTMLTableRowElement> = document.querySelectorAll("tr");
 
-	for(let i = position.column, a = 0; i < position.column + activeShape.length; i++, a++){
-		for(let j = position.row, b = 0; j < position.row + activeShape[0].length; j++, b++){
+	for(let i = position.row, a = 0; i < position.row + activeShape.length; i++, a++){
+		for(let j = position.column, b = 0; j < position.column + activeShape[0].length; j++, b++){
+			if(i + 1 >= 43) continue;
+
 			const cellsInner = rows[i].querySelectorAll("td");
 			if (activeShape[a][b].cube === 1) {
 				cellsInner[j].removeAttribute("class");

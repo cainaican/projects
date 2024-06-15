@@ -11,8 +11,7 @@ import './style.css';
  * 
  * 1. Проверка есть ли поле после фигурки
  * 2.1 Если нет, меняем active в фигурке на 'stay'
- * 2.2 Создаем новую активную фигурку фигурку
- * 
+ * 2.2 Создаем новую активную фигурку
  * 
  * 
  */
@@ -71,13 +70,13 @@ draw();
 addEventListener("keydown", (e) => {
   clear();
   if (e.code === "ArrowLeft") {
-    position.row--;
+    position.column--;
   }
   if (e.code === "ArrowRight") {
-    position.row++;
+    position.column++;
   }
   if (e.code === "ArrowDown") {
-    position.column+=2;
+    position.row+=2;
   }
   if (e.code === "ArrowUp") {
     activeShape = rotate();
@@ -89,12 +88,12 @@ setInterval(() => {
   if (checkForStop()) {
     activeShape.forEach((el) => el.forEach(elInner => elInner.block = "stay"));
     activeShape = shapes[index()];
-    position.column = 1;
-    position.row = 9;
+    position.column = 9;
+    position.row = 1;
     return;
   }
   clear();
-  position.column++;
+  position.row++;
   draw();
 }, 800)
 

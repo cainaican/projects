@@ -39,8 +39,8 @@ export const area = new Array(42).fill(0).map((el) => {
 })
 
 export const position = {
-    row: 9,
-    column: 1
+    row: 1,
+    column: 9
 }
 
 export const shapes =[square, line, zLeft, zRight, t, cornerLeft, cornerRight];
