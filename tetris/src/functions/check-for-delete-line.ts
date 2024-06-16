@@ -1,11 +1,11 @@
 import { area } from "../main";
 
-export function checkForDeleteLine() {
-	let shouldDeleteLine = false;
+export function checkForDeleteLine(): number[] {
+	let deletingLinesArray: number[] = [];
 
-	area.forEach((el) => {
-		if (el.every(elInner => elInner.block === "stay")) shouldDeleteLine = true;
+	area.forEach((el, idx) => {
+		if (el.every(elInner => elInner.block === "stay")) deletingLinesArray.push(idx);
 	})
 
-	return shouldDeleteLine;
+	return deletingLinesArray;
 }

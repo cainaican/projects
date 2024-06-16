@@ -4,6 +4,7 @@ import { clear, draw } from './functions/clear-draw-functions';
 import { activeShape, createActiveShape, rotate } from './functions/shapes-functions';
 import { checkForDeleteLine } from './functions/check-for-delete-line';
 import './style.css';
+import { TFigure } from './figures/figures';
 
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
@@ -51,19 +52,25 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 export const rows = 42;
 export const columns = 21;
 export const velocity = 400;
-export let area = new Array(rows).fill(0).map((el) => new Array(columns).fill(0));
+export let area: (0 | TFigure)[][] = new Array(rows).fill(0).map((el) => new Array(columns).fill(0));
 export const position = {
   row: 1,
   column: Math.floor((columns / 2) - (activeShape.length / 2))
 }
 
 export function avtomateMove(){
+
 	if (checkForStop()) {
 
 		activeShape.forEach((el) => el.forEach(elInner => elInner.block = "stay"));
 
-		if(checkForDeleteLine()) {
-			area = [area[0], ...area.splice(0, area.length-1)];
+    const deletingLinesArray = checkForDeleteLine();
+
+		if(deletingLinesArray.length > 0) {
+      deletingLinesArray.forEach((el) => {
+        area.splice(el,1);
+        area = [area[0], ...area];
+      })
 			updateTable();
 		}
 

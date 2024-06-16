@@ -2,13 +2,14 @@ import { shapes, colors, TFigure } from "../figures/figures";
 
 export let activeShape: TFigure = [];
 
-export function 	createActiveShape(): void {
+export function createActiveShape(): void {
 	
 	const index =  Math.floor((Math.random() * shapes.length));
 
 	const indexForColor = Math.floor((Math.random() * colors.length));
 
-	const as = shapes[index];
+	// const as = shapes[index];
+	const as = shapes[1];
 
 	as.forEach(el => el.forEach(elInner => elInner.color = colors[indexForColor]));
 
