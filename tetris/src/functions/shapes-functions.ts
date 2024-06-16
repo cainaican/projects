@@ -8,8 +8,8 @@ export function createActiveShape(): void {
 
 	const indexForColor = Math.floor((Math.random() * colors.length));
 
-	// const as = shapes[index];
-	const as = shapes[1];
+	const as = shapes[index];
+	// const as = shapes[1];
 
 	as.forEach(el => el.forEach(elInner => elInner.color = colors[indexForColor]));
 
