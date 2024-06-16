@@ -1,5 +1,5 @@
-import { area, position } from "../figures/figures";
-import { activeShape } from "../main";
+import { area, columns, position, rows } from "../main";
+import { activeShape } from "./shapes-functions";
 
 export function checkForStop() {
 
@@ -21,8 +21,8 @@ export function checkForStop() {
 
 	for(let i = position.row, a = 0; i < position.row + activeShape.length; i++, a++){
 		for(let j = position.column, b = 0; j < position.column + activeShape[0].length; j++, b++){
-			if(i + 1 >= 42) continue;
-			if(area[i + 1][j].block === "stay" && activeShape[a][b].cube === 1) shouldStopByBlock = true;
+			if(i + 1 >= rows) continue;
+			if(area[i + 1][j]?.block === "stay" && activeShape[a][b].cube === 1) shouldStopByBlock = true;
 		}
 	}
 	/**
@@ -30,7 +30,7 @@ export function checkForStop() {
 	 * либо дошли до нижнего края доски
 	 * либо встретили блок
 	 */
-	const shouldStop = position.row + lastIndex >= area.length - 1 || shouldStopByBlock;
+	const shouldStop = position.row + lastIndex >= rows - 1 || shouldStopByBlock;
 
 	/**
 	 * отображение в модели доски - area

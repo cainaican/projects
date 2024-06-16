@@ -1,3 +1,6 @@
+import { activeShape } from "../functions/shapes-functions";
+import { columns } from "../main";
+
 let square = [
     [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}],
     [{block: "active", cube: 1, color: ""},{block: "active", cube: 1, color: ""}]
@@ -34,13 +37,11 @@ let t = [
     [{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""},{block: "active", cube: 0, color: ""}]
 ];
 
-export const area = new Array(42).fill(0).map((el) => {
-    return new Array(21).fill(0);
-})
+export type TFigure = {
+    block: string;
+    cube: number;
+    color: string;
+}[][]
 
-export const position = {
-    row: 1,
-    column: 9
-}
-
-export const shapes =[square, line, zLeft, zRight, t, cornerLeft, cornerRight];
+export const shapes: TFigure[] =[ square, line, zLeft, zRight, t, cornerLeft, cornerRight ];
+export const colors =[ "red", "green", "blue", "yellow", "orange" ];

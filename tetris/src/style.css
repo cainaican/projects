@@ -124,6 +124,23 @@ td {
   left: calc(50% - 50px);
 }
 
+.red {
+  background-color: red;
+}
+.orange {
+  background-color: orange;
+}
+.green {
+  background-color: green;
+}
+.blue {
+  background-color: blue;
+}
+.yellow {
+  background-color: yellow;
+}
+
+
 @media screen and (max-width:1134px){
   .container{
     width:800px;

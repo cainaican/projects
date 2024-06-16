@@ -1,20 +1,9 @@
-import { position, shapes } from './figures/figures';
 import { checkForStop } from './functions/check-for-stop';
-import { createTable } from './functions/create-table';
-import { clear, draw } from './functions/draw-figure';
-import { rotate } from './functions/rotate';
+import { createTable, updateTable } from './functions/create-table';
+import { clear, draw } from './functions/clear-draw-functions';
+import { activeShape, createActiveShape, rotate } from './functions/shapes-functions';
+import { checkForDeleteLine } from './functions/check-for-delete-line';
 import './style.css';
-
-
-/**
- * Процедура отрисовки
- * 
- * 1. Проверка есть ли поле после фигурки
- * 2.1 Если нет, меняем active в фигурке на 'stay'
- * 2.2 Создаем новую активную фигурку
- * 
- * 
- */
 
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
@@ -59,43 +48,97 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <!-- <div id="app"></div> -->
     </main>
 `
-const index = () => Math.floor((Math.random() * shapes.length));
+export const rows = 42;
+export const columns = 21;
+export const velocity = 400;
+export let area = new Array(rows).fill(0).map((el) => new Array(columns).fill(0));
+export const position = {
+  row: 1,
+  column: Math.floor((columns / 2) - (activeShape.length / 2))
+}
+
+export function avtomateMove(){
+	if (checkForStop()) {
+
+		activeShape.forEach((el) => el.forEach(elInner => elInner.block = "stay"));
+
+		if(checkForDeleteLine()) {
+			area = [area[0], ...area.splice(0, area.length-1)];
+			updateTable();
+		}
+
+		position.column = Math.floor((columns / 2) - (activeShape.length / 2));
+		position.row = 0;
+		createActiveShape()
+
+		return;
+	}
+	  clear();
+	  position.row++;
+	  draw();
+}
+
+function findLeftActiveBlockIndex() {
+  const array: number[] = activeShape
+    .map(el => [...el.map(elInner => elInner.cube)])
+    .map((el) => el.findIndex((elInner) => elInner === 1))
+    .filter((el) => el >= 0)
+
+  return Math.min(...array)
+}
+
+function findRightActiveBlockIndex() {
+  const array: number[] = activeShape
+    .map(el => [...el.map(elInner => elInner.cube)])
+    .map((el) => el.lastIndexOf(1))
+    .filter((el) => el >= 0)
+
+  return Math.max(...array) + 1
+}
 
 createTable();
 
-export let activeShape = shapes[index()];
+createActiveShape();
 
 draw();
 
 addEventListener("keydown", (e) => {
-  clear();
+
   if (e.code === "ArrowLeft") {
+    if (position.column + findLeftActiveBlockIndex() <= 0) return;
+    clear();
     position.column--;
+    draw();
+    return;
   }
+
   if (e.code === "ArrowRight") {
+    if (position.column + findRightActiveBlockIndex() >= columns) return;
+    clear();
     position.column++;
+    draw();
+    return;
   }
+
+  let shouldStopByBlock = checkForStop();
+
+  if(position.row + activeShape.length >= rows - 1 || shouldStopByBlock) return;
+
   if (e.code === "ArrowDown") {
-    position.row+=2;
+    clear();
+    position.row++;
   }
+
   if (e.code === "ArrowUp") {
-    activeShape = rotate();
+    clear();
+    rotate();
   }
+
   draw();
 })
 
-setInterval(() => {
-  if (checkForStop()) {
-    activeShape.forEach((el) => el.forEach(elInner => elInner.block = "stay"));
-    activeShape = shapes[index()];
-    position.column = 9;
-    position.row = 1;
-    return;
-  }
-  clear();
-  position.row++;
-  draw();
-}, 800)
+setInterval(avtomateMove, velocity);
+
 
 
 

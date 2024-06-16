@@ -1,4 +1,4 @@
-import { area } from "../figures/figures";
+import { area } from "../main";
 
 export function createTable() {
 	const table = document.querySelector(".section__table");
@@ -18,4 +18,11 @@ export function createTable() {
 		})
 		table.appendChild(tr)
 	})
+}
+
+export function updateTable() {
+	const table = document.querySelector(".section__table");
+	let trs = document.querySelectorAll("tr");
+	table.prepend(trs[0]);
+	trs[trs.length-1].remove();
 }
